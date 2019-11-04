@@ -14,5 +14,5 @@ DS3231RTC driver is made with a easy to understand interface.
 				: RTC_t is public and be used together with INIT to set the time of the chip.
 				: RTC_t.year is entered as four digits year. DS3231.YinC is stored as two digitis (YinC=Year in Century);
 				: All BCD converstion are done on the fly and are invisible for the user.
-				:Temperature not implemented
+				: Temperature not implemented
 */
