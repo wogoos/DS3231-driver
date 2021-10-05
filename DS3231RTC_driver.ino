@@ -88,23 +88,23 @@ void DS3231RTC_driver(uint8_t cmd) {
 			DS3231.MinY	=	RTC.MinY;
 			DS3231.YinC	=   RTC.year-2000;
 			DS3231.DinW	=	RTC.DinW;
-			Wire.beginTransmission(I2C_DS3231_ADR)	;						// Start I2C and send Address
-			Wire.write(0);													// set DS3231 register pointer to 0
+			Wire.beginTransmission(I2C_DS3231_ADR)	;					// Start I2C and send Address
+			Wire.write(0);									// set DS3231 register pointer to 0
 			for(n=0; n < sizeof(DS3231); n++) {
-				dec_val= *DSptr++;											// Read nth data element from DS3231
-				Wire.write(DEC2BCD(dec_val));								// Convert nth element dec2bcd and set all 7 RTC  Time date registers
+				dec_val= *DSptr++;							// Read nth data element from DS3231
+				Wire.write(DEC2BCD(dec_val));						// Convert nth element dec2bcd and set all 7 RTC  Time date registers
 			}
-			Wire.endTransmission();											// Send I2C STOP and release the bus
+			Wire.endTransmission();								// Send I2C STOP and release the bus
 		} break;
 		
 		case SYNC: {
-			Wire.beginTransmission(I2C_DS3231_ADR);							// Start I2C and send Address
-			Wire.write(0);													// set RTC  register address pointer to 0
+			Wire.beginTransmission(I2C_DS3231_ADR);						// Start I2C and send Address
+			Wire.write(0);									// set RTC  register address pointer to 0
 			Wire.endTransmission();
 			Wire.requestFrom(I2C_DS3231_ADR, sizeof(DS3231), STOP);
 			for(n=0; n < sizeof(DS3231); n++) {
 				bcd_val   = Wire.read();
-				*DSptr++  = BCD2DEC(bcd_val);									// Read all 7 RTC  registers, convert bcd2dec in
+				*DSptr++  = BCD2DEC(bcd_val);						// Read all 7 RTC  registers, convert bcd2dec in
 			}
 			RTC.sec		=	DS3231.sec;
 			RTC.min		=	DS3231.min;
