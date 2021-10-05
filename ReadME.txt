@@ -16,4 +16,5 @@ DS3231RTC driver is made with a easy to understand interface.
 			: DS3231.YinC is stored as two digits=(YinC=Year in Century);
 			: All BCD converstion are done on the fly and are invisible for the user.
 			: Temperature not implemented
+			: test line to work with Git
 */
